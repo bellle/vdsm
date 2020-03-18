@@ -1,6 +1,8 @@
 sudo: required
 dist: xenial
-group: edge
+group:
+  - edge
+  - deprecated-2017Q4
 language: python
 services:
   - docker
