@@ -145,7 +145,6 @@ class TestNetinfo(object):
         opts.pop('mode')
         return opts
 
-    @ipv6_broken_on_travis_ci
     def test_ip_info(self):
         with dummy_device() as device:
             with waitfor.waitfor_ipv4_addr(device, address=IPV4_ADDR1_CIDR):
@@ -211,7 +210,6 @@ class TestIPv6Addresses(object):
             sysctl.disable_ipv6(dev)
             assert not addresses.is_ipv6_local_auto(dev)
 
-    @ipv6_broken_on_travis_ci
     def test_local_auto_without_router_advertisement_server(self):
         with dummy_device() as dev:
             assert addresses.is_ipv6_local_auto(dev)

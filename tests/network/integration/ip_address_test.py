@@ -155,11 +155,9 @@ class TestIPAddress(object):
     def test_add_delete_ipv4(self):
         self._test_add_delete(IPV4_A_WITH_PREFIXLEN, IPV4_B_WITH_PREFIXLEN)
 
-    @ipv6_broken_on_travis_ci
     def test_add_delete_ipv6(self):
         self._test_add_delete(IPV6_A_WITH_PREFIXLEN, IPV6_B_WITH_PREFIXLEN)
 
-    @ipv6_broken_on_travis_ci
     @pytest.mark.skipif(
         nm_is_running(),
         reason='Fails randomly when NM is running. See BZ#1512316',
@@ -218,14 +216,12 @@ class TestIPAddress(object):
             ipv6_addresses=[],
         )
 
-    @ipv6_broken_on_travis_ci
     def test_list_ipv6(self):
         self._test_list(
             ipv4_addresses=[],
             ipv6_addresses=[IPV6_A_WITH_PREFIXLEN, IPV6_B_WITH_PREFIXLEN],
         )
 
-    @ipv6_broken_on_travis_ci
     def test_list_ipv4_ipv6(self):
         self._test_list(
             ipv4_addresses=[IPV4_A_WITH_PREFIXLEN],
