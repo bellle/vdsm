@@ -1,8 +1,7 @@
-os: linux
-arch: arm64
 dist: xenial
 group: edge
 language: python
+sudo: required
 services:
   - docker
 
@@ -21,11 +20,10 @@ before_install:
   - docker pull ovirtorg/vdsm-test-$DIST
 
 before_script:
-  - git config --global user.email "blevin@redhat.com"
-  - git config --global user.name "bellle"
   # autogen.sh needs a tag, but the last tag may be 100 commits in the past,
   # and we don't want to get the entire history for testing the tip.
   - git tag v999 -a -m "tesing"
+  - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 
 # Notes:
 # - network tests on centos fail on low coverage, so we use lower value.
@@ -38,6 +36,7 @@ script:
     --env NETWORK_COVERAGE=38 \
     --privileged \
     --rm \
+    -it \
     --volume `pwd`:/vdsm:Z \
     --volume /run/udev:/run/udev:Z \
     ovirtorg/vdsm-test-$DIST \
