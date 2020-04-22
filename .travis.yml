@@ -1,5 +1,5 @@
 os: linux
-arch: s390x
+arch: arm64
 dist: xenial
 group: edge
 language: python
@@ -21,6 +21,8 @@ before_install:
   - docker pull ovirtorg/vdsm-test-$DIST
 
 before_script:
+  - git config --global user.email "blevin@redhat.com"
+  - git config --global user.name "bellle"
   # autogen.sh needs a tag, but the last tag may be 100 commits in the past,
   # and we don't want to get the entire history for testing the tip.
   - git tag v999 -a -m "tesing"
