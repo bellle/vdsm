@@ -1,5 +1,8 @@
+os: linux
+arch: arm64
 dist: xenial
-group: edge
+sudo: required
+
 language: python
 services:
   - docker
@@ -12,9 +15,7 @@ git:
 # issues on CentOS but the chance is very low.
 jobs:
   include:
-    - env: DIST=centos-8   TARGETS="storage tests"
-    - env: DIST=fedora-30  TARGETS="lint"
-    - env: DIST=fedora-30  TARGETS="storage tests"
+    - env: DIST=centos-8   TARGETS="tests"
 
 before_install:
   - docker --version
@@ -31,7 +32,6 @@ before_script:
 script:
   - |
     docker run \
-    --env TRAVIS_CI=1 \
     --env PYLINT_JOBS=1 \
     --env NETWORK_COVERAGE=38 \
     --privileged \
