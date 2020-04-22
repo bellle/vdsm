@@ -1,3 +1,5 @@
+os: linux
+arch: s390x
 dist: xenial
 group: edge
 language: python
