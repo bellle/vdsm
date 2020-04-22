@@ -38,7 +38,6 @@ script:
     --env NETWORK_COVERAGE=38 \
     --privileged \
     --rm \
-    -it \
     --volume `pwd`:/vdsm:Z \
     --volume /run/udev:/run/udev:Z \
     ovirtorg/vdsm-test-$DIST \
