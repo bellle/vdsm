@@ -1,5 +1,6 @@
 dist: xenial
 group: edge
+sudo: required
 language: python
 services:
   - docker
