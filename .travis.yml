@@ -19,8 +19,7 @@ jobs:
 before_install:
   - docker --version
   - docker pull quay.io/ovirt/vdsm-test-$DIST
-  - echo '{"ipv6":true,"fixed-cidr-v6":"2001:db8:1::/64"}' | sudo tee /etc/docker/daemon.json
-  - sudo service docker restart
+  - sudo travis/configure-docker.py
 
 before_script:
   # autogen.sh needs a tag, but the last tag may be 100 commits in the past,
