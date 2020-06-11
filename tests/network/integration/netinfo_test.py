@@ -145,7 +145,6 @@ class TestNetinfo(object):
         opts.pop('mode')
         return opts
 
-    @ipv6_broken_on_travis_ci
     def test_ip_info(self):
         with dummy_device() as device:
             with waitfor.waitfor_ipv4_addr(device, address=IPV4_ADDR1_CIDR):
@@ -211,12 +210,10 @@ class TestIPv6Addresses(object):
             sysctl.disable_ipv6(dev)
             assert not addresses.is_ipv6_local_auto(dev)
 
-    @ipv6_broken_on_travis_ci
     def test_local_auto_without_router_advertisement_server(self):
         with dummy_device() as dev:
             assert addresses.is_ipv6_local_auto(dev)
 
-    @ipv6_broken_on_travis_ci
     def test_local_auto_with_static_address_without_ra_server(self):
         with dummy_device() as dev:
             ipwrapper.addrAdd(dev, '2001::88', '64', family=6)
@@ -230,7 +227,6 @@ class TestIPv6Addresses(object):
         running_on_ovirt_ci,
         reason='Using dnsmasq for ipv6 RA is unstable on CI',
     )
-    @ipv6_broken_on_travis_ci
     def test_local_auto_with_dynamic_address_from_ra(self):
         IPV6_NETADDRESS = '2001:1:1:1'
         IPV6_NETPREFIX_LEN = '64'
