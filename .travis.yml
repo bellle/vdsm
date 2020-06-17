@@ -20,8 +20,7 @@ jobs:
 before_install:
   - docker --version
   - docker pull quay.io/ovirt/vdsm-test-$DIST
-  - pwd
-  - echo $PWD
+  - sudo travis/configure-docker.py
 
 before_script:
   # autogen.sh needs a tag, but the last tag may be 100 commits in the past,
